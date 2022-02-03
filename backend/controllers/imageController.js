@@ -1,20 +1,21 @@
 const multer = require("multer");
+const sharp = require('sharp');
 const ImageMetadata = require("../models/ImageMetadataModel");
 
 const IMG_DIRECTORY_PATH = "public/img";
-
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, IMG_DIRECTORY_PATH);
-  },
-  filename: (req, file, cb) => {
-    const extension = file.mimetype.split("/")[1];
-    cb(null, `${req.body.name}.${extension}`);
-  },
-});
+const IMG_PATH = "/img";
+const multerStorage = multer.memoryStorage();
 
 const upload = multer({
   storage: multerStorage,
+  fileFilter: (req, file, cb) => {
+    const extension = file.mimetype.split("/")[1];
+    if(extension === "jpeg" || extension === "png"){
+      cb(null,true)
+    }else {
+      cb(null,false)
+    }
+  }
 });
 
 exports.getAllImages = async (req, res, next) => {
@@ -28,10 +29,20 @@ exports.getAllImages = async (req, res, next) => {
 
 exports.uploadImage = upload.single("photo");
 
+const createFileName = (extension, originalname) => {
+  const newName = originalname.trim().substring(0,10).toLowerCase().replace(/å|ä/g,'a').replace(/ö/g,'o').replace(/([^a-z0-9 ]+)/g,'').replace(/ /g,'-')
+  return `${newName}_${Date.now()}.${extension}`
+}
+
 exports.createImageMetadata = async (req, res, next) => {
+  const extension = req.file.mimetype.split("/")[1];
+  const newFileName = createFileName(extension, req.body.name)
+  const path = `${IMG_DIRECTORY_PATH}/${newFileName}`
+  await sharp(req.file.buffer).resize(400, 400).toFile(path);
+
   const doc = await ImageMetadata.create({
     name: req.body.name,
-    path: `/img/${req.file.filename}`,
+    path:`${IMG_PATH}/${newFileName}`
   });
 
   if (!doc) {
