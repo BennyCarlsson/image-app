@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Submit /> should match snapshot 1`] = `
+<DocumentFragment>
+  <input
+    class="sc-bdvvtL jAGkdz"
+    type="submit"
+    value="Submit"
+  />
+</DocumentFragment>
+`;

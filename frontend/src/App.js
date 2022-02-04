@@ -6,21 +6,22 @@ import { saveFile } from './utils/db'
 import Submit from './components/Submit'
 import TopWrapper from './components/TopWrapper'
 import InputFile from './components/InputFile'
+import DisplayMessage from './components/DisplayMessage'
 
 function App() {
   const [name, setName] = useState('')
   const [file, setFile] = useState()
-
+  const [message, setMessage] = useState('')
   const handleFile = (e) => {
     setFile(e.target.files[0])
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setMessage('...')
     saveFile(file, name)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error))
+      .then(() => setMessage('Success!'))
+      .catch(() => setMessage('Something went wrong :/'))
 
     setName('')
     setFile(undefined)
@@ -35,6 +36,7 @@ function App() {
           <InputFile handleFile={handleFile} />
           {file && <PreviewImage src={URL.createObjectURL(file)} />}
         </TopWrapper>
+        <DisplayMessage message={message} />
         <Input
           value={name}
           onChange={(e) => {

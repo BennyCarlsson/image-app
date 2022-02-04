@@ -12,7 +12,4 @@ export const saveFile = (file, filename) => {
   }
 
   return fetch(`${API_ROOT_URL}/images`, requestOptions)
-  // .then((response) => response.text())
-  // .then((result) => console.log(result))
-  // .catch((error) => console.log('error', error))
 }

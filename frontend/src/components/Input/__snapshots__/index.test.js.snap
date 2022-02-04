@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdvvtL hjGchb"
+  >
+    <label
+      class="sc-dkPtRN hJOcUV"
+      for="filename"
+    >
+      Image name
+    </label>
+    <input
+      class="sc-gsDKAQ kydZcA"
+      id="filename"
+      name="filename"
+      placeholder="Enter name..."
+      type="text"
+      value="value text"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -22,19 +22,19 @@ export const Text = styled.p`
   color: white;
   font-weight: 700;
   font-size: 2rem;
-  text-shadow: 0px 1px 3px #484848;
+  text-shadow: 0px 1px 2px #484848;
   z-index: 1;
 `
 export const Button = styled.span`
   background-color: #50cdb1;
   color: #fff;
-  font-family: Lato, sans-serif;
+  font-family: sans-serif;
   font-weight: 700;
-  font-size: 1rem;
-  padding: 0.8rem 3rem;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
   -webkit-appearance: none;
   appearance: none;
-  border-radius: 25rem;
+  border-radius: 0.5rem;
   border: none;
   margin-top: 2.4rem;
   cursor: pointer;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputFile /> should match snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="sc-bdvvtL dyeFrr"
+  >
+    <p
+      class="sc-dkPtRN jIjpcz"
+    >
+      Select a file or drag here
+    </p>
+    <input
+      accept="image/jpeg, image/png"
+      class="sc-gsDKAQ eBsTib"
+      type="file"
+      value=""
+    />
+    <span
+      class="sc-hKwDye dyjigE"
+    >
+      Upload Image
+    </span>
+  </label>
+</DocumentFragment>
+`;

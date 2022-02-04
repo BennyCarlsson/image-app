@@ -9,7 +9,7 @@ export const StyledTopWrapper = styled.div`
   transform: scaleX(1.3);
   overflow: hidden;
   box-shadow: 0px 2px 17px -11px rgb(96 96 96);
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 `
 export const Inner = styled.span`
   transform: scaleX(calc(1 / 1.3));
