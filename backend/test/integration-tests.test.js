@@ -6,11 +6,17 @@ const dropAllCollections = require("./utils/dropAllCollections");
 
 const request = supertest(app);
 
-const testImageName = "Test";
-const expectedFilePath = "/img/Test.jpeg";
+const testImageName = "Testååäö test;";
+const millisecondsToMock = 1619517600;
+const expectedFilePath = `/img/testaaao-t_${millisecondsToMock}.jpeg`;
+const mockDateNow = () => {
+  return millisecondsToMock;
+}
 
 // Connects to test database
 beforeAll(async () => {
+  originalDateNow = Date.now;
+  Date.now = mockDateNow;
   process.env.ENV = "test";
   const url = `mongodb://127.0.0.1/image-app-test-db`;
   await mongoose.connect(url, {
@@ -23,6 +29,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await dropAllCollections();
   await mongoose.connection.close();
+  Date.now = originalDateNow;
 });
 
 test("Return 404 for invalid endpoint", async (done) => {
